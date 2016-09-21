@@ -97,6 +97,18 @@ def makeWebhookResult(data):
                                 "title": "View Details"
                             }
                         ]
+                    },
+                    {
+                        "title": channel.get('title'),
+                        "image_url": "https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png",
+                        "subtitle": speech,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": channel.get('link'),
+                                "title": "View Details"
+                            }
+                        ]
                     }
                 ]
             }
