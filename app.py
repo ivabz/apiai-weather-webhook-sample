@@ -80,13 +80,36 @@ def makeWebhookResult(data):
     speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
              ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
 
+    facebook_message = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": channel.get('title'),
+                        "image_url": "https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png",
+                        "subtitle": speech,
+                        "buttons": [
+                            {
+                                "type": "web_url",
+                                "url": channel.get('link'),
+                                "title": "View Details"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+    
     print("Response:")
     print(speech)
 
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": {"facebook": {speech}}
+        "data": {"facebook": facebook_message},
         # "contextOut": [],
         "source": "apiai-weather-webhook-sample"
     }
